@@ -313,7 +313,7 @@ class MrpcProcessor(DataProcessor):
 
   def get_labels(self):
     """See base class."""
-    return ["0", "1"]
+    return ["0", "1", "2","3", "4", "5","6", "7", "8","9", "10", "11","12", "13", "14",]
 
   def _create_examples(self, lines, set_type):
     """Creates examples for the training and dev sets."""
@@ -322,14 +322,14 @@ class MrpcProcessor(DataProcessor):
       if i == 0:
         continue
       guid = "%s-%s" % (set_type, i)
-      text_a = tokenization.convert_to_unicode(line[3])
-      text_b = tokenization.convert_to_unicode(line[4])
+      text_a = tokenization.convert_to_unicode(line[1])
+      # text_b = tokenization.convert_to_unicode(line[4])
       if set_type == "test":
         label = "0"
       else:
         label = tokenization.convert_to_unicode(line[0])
       examples.append(
-          InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
+          InputExample(guid=guid, text_a=text_a, text_b=None, label=label))
     return examples
 
 
